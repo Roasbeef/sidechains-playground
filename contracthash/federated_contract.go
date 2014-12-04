@@ -45,6 +45,7 @@ func DeriveClaimKey(privKey *btcutil.WIF, nonce []byte, addr *btcutil.Address, n
 }
 
 func GenerateContract(contractTemplate []byte, addr *btcutil.Address, nonce *[]byte, netParams *btcnet.Params) (*Contract, error) {
+func DeriveContractHash(contractTemplate []byte, addr *btcutil.Address, nonce *[]byte, netParams *btcnet.Params) (*Contract, error) {
 	// Extract info about the contract template redeemscript.
 	scriptType, addrs, numRequiredSigs, err := btcscript.ExtractPkScriptAddrs(
 		contractTemplate, &btcnet.TestNet3Params)

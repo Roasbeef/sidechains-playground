@@ -18,6 +18,7 @@ func main() {
 
 	// Let's create that lovely contract.
 	contract, _ := contracthash.GenerateContract(redeemScript, &addr, &nonce, testnet)
+	contract, _ := contracthash.DeriveContractHash(redeemScript, &addr, &nonce, testnet)
 
 	fmt.Printf("Nonce: %x \n", contract.Nonce)
 	fmt.Printf("P2SH: %v \n", contract.PayToContractAddr.String())
