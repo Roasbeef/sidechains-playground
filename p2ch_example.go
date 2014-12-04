@@ -17,7 +17,6 @@ func main() {
 	nonce, _ := hex.DecodeString("3a11be476485a6273fad4a0e09117d42")
 
 	// Let's create that lovely contract.
-	contract, _ := contracthash.GenerateContract(redeemScript, &addr, &nonce, testnet)
 	contract, _ := contracthash.DeriveContractHash(redeemScript, &addr, &nonce, testnet)
 
 	fmt.Printf("Nonce: %x \n", contract.Nonce)
