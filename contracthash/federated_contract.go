@@ -72,7 +72,7 @@ func DeriveContractHash(contractTemplate []byte, addr *btcutil.Address, nonce *[
 		nonce := make([]byte, 0, 16)
 		_, err = io.ReadFull(rand.Reader, nonce)
 		if err != nil {
-			return nil, errors.New(fmt.Sprintf("Error reading random nonce: ", err))
+			return nil, errors.New(fmt.Sprintf("Error reading random nonce: %v", err))
 		}
 	}
 
@@ -104,7 +104,7 @@ func DeriveContractHash(contractTemplate []byte, addr *btcutil.Address, nonce *[
 		// PCC_i = P_i + G x Tweak_i
 		tX, tY := curve.ScalarBaseMult(tweak.Bytes())
 		nX, nY := curve.Add(tX, tY, fedKey.X, fedKey.Y)
-		point := (&btcec.PublicKey{curve, nX, nY}).SerializeCompressed()
+		point := (&btcec.PublicKey{Curve: curve, X: nX, Y: nY}).SerializeCompressed()
 		derivedKey, _ := btcutil.NewAddressPubKey(point, netParams)
 		derivedKeys = append(derivedKeys, derivedKey)
 	}
